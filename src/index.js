@@ -98,4 +98,12 @@ const server = http.createServer((req, res) => {
   })
 })
 
-server.listen(Number.isInteger(process.env.PORT) ? process.env.PORT : 3000)
+let port = parseInt(process.env.PORT, 10)
+
+if (isNaN(port)) {
+  port = 3000
+}
+
+server.listen(port, () => {
+  console.log(`Listening on port ${port}`)
+})
